@@ -40,7 +40,7 @@ class ItemCard extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
         child: Card(
-          color: AppColors.cardColor,
+          color: AppColors.homeColor,
           elevation: 0,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12.0),
@@ -84,23 +84,13 @@ class ItemCard extends StatelessWidget {
                 SizedBox(height: 8.0),
                 Text(brief),
                 SizedBox(height: 16.0),
-                // 动物发推的心情表情
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Icon(Icons.time_to_leave),
-                    SizedBox(width: 8),
-                    Icon(Icons.time_to_leave),
-                    Icon(Icons.time_to_leave),
-                  ],
-                ),
                 // 动物发推的事件
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.time_to_leave),
+                        Icon(Icons.access_time),
                         SizedBox(width: 8),
                         Text(
                           '$comments 分钟前',

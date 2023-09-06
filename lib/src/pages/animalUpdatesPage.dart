@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import '../components/animalUpdatesPage/avatarList.dart';
 import '../components/animalUpdatesPage/itemCrad.dart';
 import '../components/globalBottomNavigationBar.dart';
+import '../components/search.dart';
 import '../mook/mook.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -58,8 +59,9 @@ class _State extends State<AnimalUpdatesPage> {
         child: SingleChildScrollView(
           child: Column(
             children: [
+              SearchComponent(),
               Container(
-                padding: EdgeInsets.all(20),
+                padding: EdgeInsets.only(left: 20,right: 20),
                 child: AvatarList(
                   avatars: [...articleList[1]["articleDetail"]["images"],...articleList[1]["articleDetail"]["images"]],
                 ),

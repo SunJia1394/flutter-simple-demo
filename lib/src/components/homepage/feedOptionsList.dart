@@ -1,57 +1,199 @@
+import 'package:app_learn/src/theme/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-class FeedOptionsList extends StatelessWidget {
-  const FeedOptionsList({super.key, required this.showSnackbar});
+import 'optionsList.dart';
 
-  final Function(bool) showSnackbar;
+class FeedOptionsList extends StatefulWidget {
+  const FeedOptionsList(
+      {Key? key, required this.showSnackbar, required this.showImages})
+      : super(key: key);
 
-  void _postRequest(String url, Map<String, dynamic> body) async {
-    print(body.runtimeType);
-    try {
-      final response = await http.post(Uri.parse(url), body: body);
-      print(response);
-      if (response.statusCode == 200) {
-        print(true);
-        showSnackbar(true);
-      } else {
-        print(false);
-        // 处理错误响应
-        showSnackbar(false);
-      }
-    } catch (error) {
-      print(error);
-      // 处理请求异常
-      showSnackbar(false);
+  final void Function(bool success) showSnackbar;
+  final void Function(BuildContext context, String imageUrl)
+      showImages; // 添加 showImages 方法
+
+  @override
+  State<FeedOptionsList> createState() => _FeedOptionsListState();
+}
+
+class _FeedOptionsListState extends State<FeedOptionsList> {
+  List<Map<String, dynamic>> options = [
+    {
+      "label": "Milk",
+      "url": "6",
+      "image": "assets/Milk.png",
+      "sendUrl": "http://image1.juramaia.com/Fjuh4hwm7qal3Uu5Ut2ZrSm0UIus",
+      "body": {"message": "投喂小鱼干"},
+    },
+    {
+      "label": "冻干",
+      "url": "10",
+      "image": "assets/冻干.png",
+      "sendUrl": "http://image1.juramaia.com/Fj0Bh6cPI0auRjeJbc63jpxFOxqy",
+      "body": {"message": "摸摸头"},
+    },
+    {
+      "label": "猫条",
+      "url": "6",
+      "image": "assets/猫条.png",
+      "sendUrl": "http://image1.juramaia.com/Fj0Bh6cPI0auRjeJbc63jpxFOxqy",
+      "body": {"message": "投喂小鱼干"},
+    },
+    {
+      "label": "鱼干",
+      "url": "6",
+      "image": "assets/鱼干.png",
+      "sendUrl": "http://image1.juramaia.com/Fj0Bh6cPI0auRjeJbc63jpxFOxqy",
+      "body": {"message": "投喂小鱼干"},
+    },
+    {
+      "label": "幼猫",
+      "url": "6",
+      "image": "assets/幼猫.png",
+      "sendUrl": "http://image1.juramaia.com/Fj0Bh6cPI0auRjeJbc63jpxFOxqy",
+      "body": {"message": "投喂小鱼干"},
+    },
+    {
+      "label": "鱼油",
+      "url": "6",
+      "image": "assets/鱼油.png",
+      "sendUrl": "http://image1.juramaia.com/Fj0Bh6cPI0auRjeJbc63jpxFOxqy",
+      "body": {"message": "投喂小鱼干"},
+    },
+    {
+      "label": "鸡胸肉",
+      "url": "6",
+      "image": "assets/鸡胸肉.png",
+      "sendUrl": "http://image1.juramaia.com/Fj0Bh6cPI0auRjeJbc63jpxFOxqy",
+      "body": {"message": "投喂小鱼干"},
+    },
+
+    // Add more options as needed
+  ];
+
+  int selectedOption = -1; // 初始值设定为 -1，表示没有选项被选择
+
+  void onOptionSelected(int value) {
+    setState(() {
+      selectedOption = value;
+    });
+  }
+
+  void onHandClick() {
+    if (selectedOption >= 0 && selectedOption < options.length) {
+      widget.showImages(context, options[selectedOption]["sendUrl"]);
+      Navigator.pop(context);
     }
   }
 
-  Widget _buildOption(BuildContext context, String label, String url,
-      Map<String, dynamic> body) {
-    return ListTile(
-      title: Text(label),
-      onTap: () {
-        if (url.isNotEmpty) {
-          _postRequest(url, body);
-        }
-        Navigator.pop(context);
-      },
-    );
-  }
+
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 350,
+      decoration: BoxDecoration(
+        color: AppColors.cardColor,
+        borderRadius: BorderRadius.all(
+          Radius.circular(8),
+        ),
+      ),
       child: Column(
-        mainAxisSize: MainAxisSize.min,
         children: [
-          _buildOption(context, "摸摸头", "http://124.222.89.110:5002/tell",
-              {"message": "摸摸头"}),
-          _buildOption(context, "投喂小鱼干", "http://124.222.89.110:5002/tell",
-              {"message": "投喂小鱼干"}),
-          _buildOption(context, "投喂粮食", "http://124.222.89.110:5002/tell",
-              {"message": "投喂粮食"}),
+          SizedBox(height: 20),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "食物",
+                style: TextStyle(
+                  color: Colors.black,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              SizedBox(
+                width: 20,
+              ),
+              Text(
+                "玩具",
+                style: TextStyle(
+                  color: Colors.grey,
+                ),
+              ),
+              SizedBox(width: 20),
+              Text(
+                "洗护",
+                style: TextStyle(
+                  color: Colors.grey,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(height: 20),
+          SizedBox(
+              height: 220,
+              child: MyOptionsWidget(
+                options: options,
+                onOptionSelected: onOptionSelected,
+                isSelected: selectedOption,
+              )),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Row(
+                children: [
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text("86货币"),
+                  SizedBox(
+                    width: 20,
+                  ),
+                  Text(
+                    "充值",
+                    style: TextStyle(
+                      color: Color.fromRGBO(247, 162, 120, 1.0),
+                    ),
+                  ),
+                  Icon(
+                    Icons.keyboard_arrow_right,
+                    color: Color.fromRGBO(247, 162, 120, 1.0),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      onHandClick();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      primary: Colors.white,
+                      onPrimary: Colors.black,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        side: BorderSide(color: Colors.black),
+                      ),
+                    ),
+                    child: Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                      child: Text(
+                        '发送',
+                        style: TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    width: 10,
+                  ),
+                ],
+              )
+            ],
+          )
         ],
       ),
     );

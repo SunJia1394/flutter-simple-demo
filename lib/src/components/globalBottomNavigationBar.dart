@@ -1,7 +1,11 @@
+import 'dart:developer';
+
+import 'package:app_learn/src/pages/homepage.dart';
 import 'package:app_learn/src/theme/theme.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import '../pages/IpPage.dart';
 import '../pages/animalUpdatesPage.dart';
 
 class GlobalBottomNavigationBar extends StatefulWidget {
@@ -11,8 +15,6 @@ class GlobalBottomNavigationBar extends StatefulWidget {
 }
 
 class _GlobalBottomNavigationBarState extends State<GlobalBottomNavigationBar> {
-  int _selectedIndex = 0;
-
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -38,7 +40,7 @@ class _GlobalBottomNavigationBarState extends State<GlobalBottomNavigationBar> {
                       children: [
                         Expanded(
                           child: GestureDetector(
-                            onTap: () => _onItemSelected(2),
+                            onTap: () => _onItemSelected(1),
                             child: Container(
                               alignment: Alignment.center,
                               child: Column(
@@ -95,7 +97,7 @@ class _GlobalBottomNavigationBarState extends State<GlobalBottomNavigationBar> {
                 top: 0.0,
                 left: (MediaQuery.of(context).size.width - 56.0) / 2,
                 child: GestureDetector(
-                  onTap: () => _onItemSelected(1),
+                  onTap: () => _onItemSelected(0),
                   child: Container(
                     width: 56.0,
                     height: 56.0,
@@ -121,21 +123,42 @@ class _GlobalBottomNavigationBarState extends State<GlobalBottomNavigationBar> {
 
   void _onItemSelected(int index) {
     setState(() {
-      _selectedIndex = index;
       // 在这里处理按钮点击事件，根据需要进行相应的操作
       switch (index) {
         case 0:
-          // 处理首页点击
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (BuildContext context) => HomePage(),
+            ),
+          );
           break;
         case 1:
-          // 处理通知点击
+          Navigator.push(
+            context,
+            PageRouteBuilder(
+              pageBuilder: (context, animation, secondaryAnimation) =>
+                  IpPage(),
+              // 新页面的构建器
+              transitionsBuilder:
+                  (context, animation, secondaryAnimation, child) {
+                // 自定义过渡动画的构建器
+                return SlideTransition(
+                  position: Tween<Offset>(
+                    begin: const Offset(-1.0, 0.0), // 新页面从右侧滑动进入
+                    end: Offset.zero,
+                  ).animate(animation),
+                  child: child,
+                );
+              },
+            ),
+          );
           break;
         case 2:
           Navigator.push(
             context,
             PageRouteBuilder(
-              pageBuilder:
-                  (context, animation, secondaryAnimation) =>
+              pageBuilder: (context, animation, secondaryAnimation) =>
                   AnimalUpdatesPage(),
               // 新页面的构建器
               transitionsBuilder:
