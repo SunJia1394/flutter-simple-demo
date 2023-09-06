@@ -1,9 +1,12 @@
 import 'package:app_learn/src/pages/animalUpdatesPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import '../components/globalBottomNavigationBar.dart';
 import '../components/homepage/customSnackbar.dart';
 import '../components/homepage/feedOptionsList.dart';
 import 'dart:math';
+
+import '../theme/theme.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -29,7 +32,7 @@ class _HomePageState extends State<HomePage> {
           if (success) {
             // 将进度条的值设置为 1.0，表示进度已满
             setState(() {
-              progressBarValue =  Random().nextDouble();
+              progressBarValue = Random().nextDouble();
             });
           }
         });
@@ -40,10 +43,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("用户界面"),
-        centerTitle: true,
-      ),
+      backgroundColor: AppColors.homeColor,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
@@ -97,7 +97,8 @@ class _HomePageState extends State<HomePage> {
                           child: LinearProgressIndicator(
                             value: progressBarValue, // 设置进度条的值，0.0 到 1.0 之间
                             backgroundColor: Colors.grey[300],
-                            valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
+                            valueColor:
+                                AlwaysStoppedAnimation<Color>(Colors.blue),
                           ),
                         ),
                       ),
@@ -134,12 +135,11 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.black, // 边框颜色
                         width: 1.5, // 边框宽度
                       ),
-                      borderRadius: BorderRadius.circular(30), // 按钮四角圆角半径
+                      borderRadius: BorderRadius.circular(12), // 按钮四角圆角半径
                     ),
                   ),
                 ),
                 SizedBox(width: 10),
-
 
                 // 查看消息按钮
                 Expanded(
@@ -180,7 +180,7 @@ class _HomePageState extends State<HomePage> {
                         color: Colors.black, // 边框颜色
                         width: 1.5, // 边框宽度
                       ),
-                      borderRadius: BorderRadius.circular(30), // 按钮四角圆角半径
+                      borderRadius: BorderRadius.circular(12), // 按钮四角圆角半径
                     ),
                   ),
                 ),
@@ -190,6 +190,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
+      bottomNavigationBar: GlobalBottomNavigationBar(),
     );
   }
 }

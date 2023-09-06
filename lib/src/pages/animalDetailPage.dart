@@ -49,36 +49,38 @@ class _AnimalDetailPageState extends State<AnimalDetailPage> {
   Widget build(BuildContext context) {
     return Scaffold(
         body: Stack(
-          children: [
-            ProfileWidget(
-              name: "test",
-              avatarPath: item["avatarPath"],
-            ),
-            Container(
-                margin: EdgeInsets.only(top: 100),
-                child: ListView(
-                  children: [
-                    Container(
-                      height: MediaQuery.of(context).size.height - 100,
-                      width: MediaQuery.of(context).size.width,
-                      padding: EdgeInsets.only(top: 20, left: 10, right: 10),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30),
-                          topRight: Radius.circular(30),
-                        ),
-                        color: AppTheme.themeData.cardColor,
-                      ),
-                      child: ListView(children: [
-                        AdaptiveImageGrid(
-                          images: item["articleDetail"]["images"],
-                        ),
-                        SizedBox(height: 20,)
-                      ]),
+      children: [
+        ProfileWidget(
+          name: "test",
+          avatarPath: item["avatarPath"],
+        ),
+        Container(
+            margin: EdgeInsets.only(top: 100),
+            child: ListView(
+              children: [
+                Container(
+                  height: MediaQuery.of(context).size.height - 100,
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.only(top: 20, left: 10, right: 10),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
+                    ),
+                    color: AppTheme.themeData.cardColor,
+                  ),
+                  child: ListView(children: [
+                    AdaptiveImageGrid(
+                      images: item["articleDetail"]["images"],
+                    ),
+                    SizedBox(
+                      height: 20,
                     )
-                  ],
-                )),
-          ],
-        ));
+                  ]),
+                )
+              ],
+            )),
+      ],
+    ));
   }
 }

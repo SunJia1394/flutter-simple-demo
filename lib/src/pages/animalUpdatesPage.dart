@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../components/animalUpdatesPage/avatarList.dart';
 import '../components/animalUpdatesPage/itemCrad.dart';
+import '../components/globalBottomNavigationBar.dart';
 import '../mook/mook.dart';
 import 'package:pull_to_refresh/pull_to_refresh.dart';
 
@@ -47,6 +48,8 @@ class _State extends State<AnimalUpdatesPage> {
         title: Text("Messgaes"),
         centerTitle: true,
       ),
+      bottomNavigationBar: GlobalBottomNavigationBar(),
+
       body: SmartRefresher(
         enablePullUp: true,
         controller: _refreshController,

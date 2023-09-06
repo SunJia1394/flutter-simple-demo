@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import '../../pages/animalDetailPage.dart';
 import '../../pages/articleDetailPage.dart';
 import '../../theme/theme.dart';
-import '../networkImageLoader.dart';
 import 'likeIcon.dart';
 
 class ItemCard extends StatelessWidget {

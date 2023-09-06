@@ -2,8 +2,6 @@ import 'package:app_learn/src/pages/animalDetailPage.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../networkImageLoader.dart';
-
 class DetailPageTopBar extends StatelessWidget {
   final String name;
   final String avatarUrl;

@@ -3,14 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
 class FeedOptionsList extends StatelessWidget {
-  const FeedOptionsList({super.key,required this.showSnackbar});
+  const FeedOptionsList({super.key, required this.showSnackbar});
 
   final Function(bool) showSnackbar;
 
   void _postRequest(String url, Map<String, dynamic> body) async {
-    print("object");
+    print(body.runtimeType);
     try {
-
       final response = await http.post(Uri.parse(url), body: body);
       print(response);
       if (response.statusCode == 200) {
@@ -28,7 +27,8 @@ class FeedOptionsList extends StatelessWidget {
     }
   }
 
-  Widget _buildOption(BuildContext context, String label, String url, Map<String, dynamic> body) {
+  Widget _buildOption(BuildContext context, String label, String url,
+      Map<String, dynamic> body) {
     return ListTile(
       title: Text(label),
       onTap: () {
@@ -46,9 +46,12 @@ class FeedOptionsList extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          _buildOption(context, "摸摸头", "http://124.222.89.110:5002/tell", {"message": "摸摸头"}),
-          _buildOption(context, "投喂小鱼干", "http://124.222.89.110:5002/tell", {"message": "投喂小鱼干"}),
-          _buildOption(context, "投喂粮食", "http://124.222.89.110:5002/tell", {"message": "投喂粮食"}),
+          _buildOption(context, "摸摸头", "http://124.222.89.110:5002/tell",
+              {"message": "摸摸头"}),
+          _buildOption(context, "投喂小鱼干", "http://124.222.89.110:5002/tell",
+              {"message": "投喂小鱼干"}),
+          _buildOption(context, "投喂粮食", "http://124.222.89.110:5002/tell",
+              {"message": "投喂粮食"}),
         ],
       ),
     );

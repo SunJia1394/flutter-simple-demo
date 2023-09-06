@@ -57,6 +57,7 @@ class AppTheme {
 
 class AppColors {
   static const Color backgroundColor = Colors.white;
+  static const Color homeColor = Color.fromRGBO(228, 215, 206, 1.0);
   static const Color primaryColor = Color(0xFF030303);
   static const Color cardColor = Color(0xFFF0F0F0);
   static const Color shadowColor = Color.fromRGBO(0, 0, 0, 0.08);
