@@ -30,12 +30,12 @@ class ItemCard extends StatelessWidget {
     return GestureDetector(
       // 卡片整体点击效果
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (BuildContext context) => ArticleDetailPage(),
-          ),
-        );
+        // Navigator.push(
+        //   context,
+        //   MaterialPageRoute(
+        //     builder: (BuildContext context) => ArticleDetailPage(),
+        //   ),
+        // );
       },
       child: Container(
         margin: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
@@ -64,6 +64,7 @@ class ItemCard extends StatelessWidget {
                         );
                       },
                       child: CircleAvatar(
+                        backgroundColor: Colors.white,
                         backgroundImage: CachedNetworkImageProvider(avatarPath),
                       ),
                     ),
@@ -74,11 +75,13 @@ class ItemCard extends StatelessWidget {
                 ),
                 SizedBox(height: 16.0),
                 // 展示图文部分
-                ClipRRect(
-                  borderRadius: BorderRadius.circular(12.0),
-                  child: CachedNetworkImage(
-                    imageUrl: imageUrl,
-                    fit: BoxFit.cover,
+                Container(
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12.0),
+                    child: CachedNetworkImage(
+                      imageUrl: imageUrl,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                 ),
                 SizedBox(height: 8.0),

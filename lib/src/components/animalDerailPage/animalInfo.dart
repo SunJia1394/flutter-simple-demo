@@ -14,74 +14,73 @@ class ProfileWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 200,
-      width: MediaQuery.of(context).size.width,
-      decoration: BoxDecoration(
-        image: DecorationImage(
-          image: CachedNetworkImageProvider(avatarPath),
-          fit: BoxFit.fitWidth,
-          alignment: Alignment.center,
+    return Row(
+      children: [
+        SizedBox(width: 20),
+        CircleAvatar(
+          radius: 30,
+          backgroundImage: CachedNetworkImageProvider(
+              "https://p.qqan.com/up/2020-10/16037671306141706.jpg"), // 替换成用户头像的URL
         ),
-      ),
-      child: Container(
-          padding: EdgeInsets.only(top: 15),
+        SizedBox(width: 10),
+        Expanded(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
-                children: [
-                  SizedBox(width: 10),
-                  IconButton(
-                    icon: Icon(Icons.arrow_back),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                ],
+              Text(
+                "动物姓名",
+                style: TextStyle(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.black,
+                ),
               ),
+              SizedBox(height: 5),
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(children: [
-                    SizedBox(width: 10),
-                    CircleAvatar(
-                      radius: 30,
-                      backgroundImage: CachedNetworkImageProvider(avatarPath),
+                  Icon(
+                    Icons.pets,
+                    color: Color(0xFF8D6E63),
+                    size: 20,
+                  ),
+                  SizedBox(width: 5),
+                  Text(
+                    "小橘猫",
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Color(0xFF8D6E63),
                     ),
-                    SizedBox(width: 10),
-                    Text(
-                      name,
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    )
-                  ]),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      ElevatedButton(
-                        onPressed: () {},
-                        style: ElevatedButton.styleFrom(
-                          primary: Colors.white,
-                          onPrimary: Colors.grey,
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          side: BorderSide(
-                            width: 1,
-                            color: AppTheme.themeData.primaryColor,
-                          ),
-                        ),
-                        child: Text('关注',
-                            style: AppTheme.themeData.textTheme.headline3),
-                      ),
-                      SizedBox(width: 10),
-
-                    ],
                   ),
                 ],
               ),
             ],
-          )),
+          ),
+        ),
+        OutlinedButton(
+          onPressed: () {
+            // 关注按钮的点击事件处理
+          },
+          style: ButtonStyle(
+            side: MaterialStateProperty.all<BorderSide>(
+              BorderSide(color: Colors.black),
+            ),
+            backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12),
+              ),
+            ),
+          ),
+          child: Text(
+            '关注',
+            style: TextStyle(
+              fontSize: 18,
+              color: Colors.black,
+            ),
+          ),
+        ),
+        SizedBox(width: 40,)
+      ],
     );
   }
 }

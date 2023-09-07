@@ -5,6 +5,7 @@ import 'package:pull_to_refresh/pull_to_refresh.dart';
 
 import '../components/animalDerailPage/animalDetailList.dart';
 import '../components/animalDerailPage/animalInfo.dart';
+import '../components/animalDerailPage/columnsWidget.dart';
 import '../components/articleDetailPage/topBar.dart';
 import '../mook/mook.dart';
 import '../theme/theme.dart';
@@ -48,39 +49,43 @@ class _AnimalDetailPageState extends State<AnimalDetailPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Stack(
-      children: [
-        ProfileWidget(
-          name: "test",
-          avatarPath: item["avatarPath"],
+        appBar: AppBar(
+          title: Text("动物详情"),
+          centerTitle: true,
         ),
-        Container(
-            margin: EdgeInsets.only(top: 100),
-            child: ListView(
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height - 100,
-                  width: MediaQuery.of(context).size.width,
-                  padding: EdgeInsets.only(top: 20, left: 10, right: 10),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(30),
-                      topRight: Radius.circular(30),
-                    ),
-                    color: AppTheme.themeData.cardColor,
-                  ),
-                  child: ListView(children: [
-                    AdaptiveImageGrid(
-                      images: item["articleDetail"]["images"],
-                    ),
-                    SizedBox(
-                      height: 20,
-                    )
-                  ]),
+        body: SingleChildScrollView(
+          child: Column(
+            children: [
+              SizedBox(height: 10),
+              ProfileWidget(
+                name: "test",
+                avatarPath: item["avatarPath"],
+              ),
+              ColumnsWidget(),
+
+              // Row(
+              //   children: [
+              //     SizedBox(
+              //       width: 20,
+              //     ),
+              //     Text(
+              //       "//动物性格",
+              //       style: TextStyle(
+              //           fontSize: 20, color: Color.fromRGBO(25, 27, 28, 1)),
+              //     ),
+              //   ],
+              // ),
+              AdaptiveImageGrid(
+                images: item["articleDetail"]["images"],
+              ),
+              Column(children: [
+
+                SizedBox(
+                  height: 20,
                 )
-              ],
-            )),
-      ],
-    ));
+              ]),
+            ],
+          ),
+        ));
   }
 }

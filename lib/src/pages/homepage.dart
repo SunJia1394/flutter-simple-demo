@@ -1,12 +1,11 @@
-import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../components/globalBottomNavigationBar.dart';
+import '../components/homepage/ask.dart';
+import '../components/homepage/dialog.dart';
 import '../components/homepage/feedOptionsList.dart';
 import 'dart:math';
-
-import '../components/homepage/thoughtBubble.dart';
 import '../components/homepage/threeColumnsWidget.dart';
 import '../components/homepage/userProfileRow.dart';
 import '../theme/theme.dart';
@@ -23,6 +22,24 @@ class _HomePageState extends State<HomePage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   double progressBarValue = Random().nextDouble();
   String imageUrl = '';
+  bool isShowMsg = true;
+
+  void _show() {
+    if (isShowMsg && imageUrl != "") {
+      showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return CustomDialog(
+            title: "救助站给你发送了一条信息",
+            content: "因为你的帮助，上海xx救助站的这只小猫情况在变好。",
+          );
+        },
+      );
+    }
+    setState(() {
+      isShowMsg = false;
+    });
+  }
 
   void _showImages(BuildContext context, String imageUrl) {
     _postRequest("摸摸头");
@@ -65,6 +82,7 @@ class _HomePageState extends State<HomePage> {
         // 处理错误响应
       }
     } catch (error) {
+      print("========");
       print(error);
       // 处理请求异常
     }
@@ -83,14 +101,18 @@ class _HomePageState extends State<HomePage> {
           UserProfileRow(),
           ThreeColumnsWidget(),
           Expanded(
-            child: Container(
-              child: Image(
-                image: CachedNetworkImageProvider(
-                  "https://image1.juramaia.com/Fo4eWwQQrC1Rm4eQ-Py48eGA1uCY",
+            child: GestureDetector(
+              onTap: _show,
+              child: imageUrl != "" ? Container(
+                child: Image(
+                  image: CachedNetworkImageProvider(
+                    "http://image1.juramaia.com/FpTPRykoniDg2SmVe1H5LxT9aHUq",
+                  ),
                 ),
-              ),
+              ) : Container(),
             ),
           ),
+          // ElevatedButton(onPressed: ()=>{askGPT("Some problem")}, child: Text("click")),
           // 食物，
           Container(
             height: 80,
@@ -185,7 +207,9 @@ class _HomePageState extends State<HomePage> {
                 // 查看消息按钮
                 Expanded(
                   child: FloatingActionButton(
-                    onPressed: () {},
+                    onPressed: () {
+
+                    },
                     child: Text(
                       'Bonded',
                       style: TextStyle(
@@ -207,8 +231,6 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
           ),
-
-
         ],
       ),
       bottomNavigationBar: GlobalBottomNavigationBar(),

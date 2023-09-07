@@ -1,6 +1,7 @@
 import 'package:app_learn/src/components/globalBottomNavigationBar.dart';
-import 'package:app_learn/src/pages/homepage.dart';
+
 import 'package:flutter/material.dart';
+import 'package:app_learn/src/pages/homepage.dart';
 
 void main() {
   runApp(const MyApp());

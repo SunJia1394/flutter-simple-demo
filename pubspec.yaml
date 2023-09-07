@@ -1,4 +1,4 @@
-name: app_learn
+name: "app_learn"
 description: A new Flutter project.
 # The following line prevents the package from being accidentally published to
 # pub.dev using `flutter pub publish`. This is preferred for private packages.
@@ -39,6 +39,10 @@ dependencies:
   http: ^1.1.0
   carousel_slider: ^4.2.1
   cached_network_image: ^3.2.3
+  flutter_smart_dialog: ^4.9.4
+  image_picker: ^1.0.4
+  font_awesome_flutter: ^10.5.0
+  firebase_storage: ^11.2.6
 
 dev_dependencies:
   flutter_test:

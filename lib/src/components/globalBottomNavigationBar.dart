@@ -72,7 +72,7 @@ class _GlobalBottomNavigationBarState extends State<GlobalBottomNavigationBar> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Icon(
-                                    Icons.notifications,
+                                    Icons.chat_bubble,
                                     size: 20,
                                     color: Color.fromARGB(255, 141, 110, 99),
                                   ),
@@ -137,8 +137,7 @@ class _GlobalBottomNavigationBarState extends State<GlobalBottomNavigationBar> {
           Navigator.push(
             context,
             PageRouteBuilder(
-              pageBuilder: (context, animation, secondaryAnimation) =>
-                  IpPage(),
+              pageBuilder: (context, animation, secondaryAnimation) => IpPage(),
               // 新页面的构建器
               transitionsBuilder:
                   (context, animation, secondaryAnimation, child) {

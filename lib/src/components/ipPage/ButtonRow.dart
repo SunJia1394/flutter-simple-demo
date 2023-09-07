@@ -12,8 +12,10 @@ class FourButtonRow extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  width: 60, // 设置容器宽度
-                  height: 60, // 设置容器高度
+                  width: 60,
+                  // 设置容器宽度
+                  height: 60,
+                  // 设置容器高度
                   margin: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: AppColors.cardColor,
@@ -24,13 +26,20 @@ class FourButtonRow extends StatelessWidget {
                       Icons.add,
                       color: Colors.black,
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (BuildContext context) => ImageUploader(),
+                      //   ),
+                      // );
+                    },
                     color: Colors.white,
                   ),
                 ),
                 Text(
                   '流浪动物信息',
-                  style: TextStyle(color: Colors.black,fontSize: 14),
+                  style: TextStyle(color: Colors.black, fontSize: 14),
                 ),
               ],
             ),
@@ -39,9 +48,11 @@ class FourButtonRow extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  width: 60, // 设置容器宽度
-                  height: 60, // 设置容器高度
-                  margin: EdgeInsets.only(top: 10,bottom: 10),
+                  width: 60,
+                  // 设置容器宽度
+                  height: 60,
+                  // 设置容器高度
+                  margin: EdgeInsets.only(top: 10, bottom: 10),
                   decoration: BoxDecoration(
                     color: AppColors.cardColor,
                     borderRadius: BorderRadius.circular(10),
@@ -66,9 +77,11 @@ class FourButtonRow extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  width: 60, // 设置容器宽度
-                  height: 60, // 设置容器高度
-                  margin: EdgeInsets.only(top:10,bottom: 10),
+                  width: 60,
+                  // 设置容器宽度
+                  height: 60,
+                  // 设置容器高度
+                  margin: EdgeInsets.only(top: 10, bottom: 10),
                   decoration: BoxDecoration(
                     color: AppColors.cardColor,
                     borderRadius: BorderRadius.circular(10),
@@ -93,8 +106,10 @@ class FourButtonRow extends StatelessWidget {
             child: Column(
               children: [
                 Container(
-                  width: 60, // 设置容器宽度
-                  height: 60, // 设置容器高度
+                  width: 60,
+                  // 设置容器宽度
+                  height: 60,
+                  // 设置容器高度
                   margin: EdgeInsets.all(10),
                   decoration: BoxDecoration(
                     color: AppColors.cardColor,

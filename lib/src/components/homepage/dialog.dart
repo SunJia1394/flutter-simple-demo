@@ -1,82 +1,78 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CustomAlertDialog extends StatelessWidget {
+class CustomDialog extends StatelessWidget {
   final String title;
   final String content;
-  final Function onClosePressed;
-  final Function onButtonPressed;
-  final bool isOpen; // 添加 isOpen 变量
 
-  CustomAlertDialog({
-    required this.title,
-    required this.content,
-    required this.onClosePressed,
-    required this.onButtonPressed,
-    required this.isOpen, // 接收 isOpen 属性
-  });
+  CustomDialog({required this.title, required this.content});
 
   @override
   Widget build(BuildContext context) {
-    if (!isOpen) {
-      return SizedBox(); // 如果 isOpen 为 false，则返回空的 SizedBox
-    }
-
-    return AlertDialog(
+    return Dialog(
+      backgroundColor: Colors.white, // 设置背景为白色
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(10.0),
       ),
-      backgroundColor: Colors.white,
-      contentPadding: EdgeInsets.all(20),
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Text(
-            title,
-            style: TextStyle(
-              fontSize: 18,
-              fontWeight: FontWeight.bold,
-              color: Colors.black,
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                IconButton(
+                  icon: Icon(Icons.close),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                ),
+              ],
             ),
-          ),
-          IconButton(
-            icon: Icon(Icons.close),
-            onPressed: () {
-              onClosePressed();
-            },
-          ),
-        ],
-      ),
-      content: Text(
-        content,
-        style: TextStyle(fontSize: 16, color: Colors.black),
-      ),
-      actions: [
-        Container(
-          margin: EdgeInsets.only(top: 20),
-          width: double.infinity,
-          child: ElevatedButton(
-            onPressed: () {
-              onButtonPressed();
-            },
-            style: ElevatedButton.styleFrom(
-              primary: Color.fromRGBO(141, 110, 99, 1),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(5),
+            SizedBox(height: 10),
+
+            SizedBox(height: 10),
+            Text(
+              content,
+              style: TextStyle(fontSize: 14),
+            ),
+            SizedBox(height: 20),
+            Container(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateColor.resolveWith(
+                      (states) => Color.fromRGBO(141, 110, 99, 1)),
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                  ),// 设置按钮背景颜色
+                ),
+                child: Text(
+                  "我知道啦",
+                  style: TextStyle(
+                    fontSize: 14,
+                    color: Colors.white, // 设置文字颜色为白色
+                  ),
+                ),
               ),
-              padding: EdgeInsets.symmetric(vertical: 15),
             ),
-            child: Text(
-              "Button",
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
-                color: Colors.white,
-              ),
-            ),
-          ),
+            SizedBox(height: 20),
+          ],
         ),
-      ],
+      ),
     );
   }
 }

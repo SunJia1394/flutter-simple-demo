@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'dart:math';
 
 import '../../pages/articleDetailPage.dart';
+import '../../pages/oneAnimalDetailPage.dart';
 
 class AvatarList extends StatelessWidget {
   final List<String> avatars;
@@ -26,7 +27,7 @@ class AvatarList extends StatelessWidget {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (BuildContext context) => ArticleDetailPage(),
+                    builder: (BuildContext context) => OneAnimalDetailPage(),
                   ),
                 );
               },
@@ -56,6 +57,7 @@ class AvatarList extends StatelessWidget {
                     ),
                     child: CircleAvatar(
                       backgroundImage: NetworkImage(avatars[index]),
+                      backgroundColor: Colors.white,
                       radius: 25, // 内层实心圆半径
                     ),
                   ),
