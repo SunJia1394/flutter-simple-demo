@@ -17,7 +17,7 @@ class MyOptionsWidget extends StatelessWidget {
       String label,
       dynamic price,
       String url,
-      Map<String, dynamic> body,
+      String body,
       bool isSelected
       ) {
     return Container(

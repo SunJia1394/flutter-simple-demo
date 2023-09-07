@@ -11,7 +11,7 @@ class FeedOptionsList extends StatefulWidget {
       : super(key: key);
 
   final void Function(bool success) showSnackbar;
-  final void Function(BuildContext context, String imageUrl)
+  final void Function(BuildContext context, String imageUrl,String submitMsg)
       showImages; // 添加 showImages 方法
 
   @override
@@ -25,49 +25,42 @@ class _FeedOptionsListState extends State<FeedOptionsList> {
       "url": "6",
       "image": "assets/Milk.png",
       "sendUrl": "http://image1.juramaia.com/Fjuh4hwm7qal3Uu5Ut2ZrSm0UIus",
-      "body": {"message": "投喂小鱼干"},
+      "body": "投喂Milk",
     },
     {
       "label": "冻干",
       "url": "10",
       "image": "assets/冻干.png",
       "sendUrl": "http://image1.juramaia.com/Fj0Bh6cPI0auRjeJbc63jpxFOxqy",
-      "body": {"message": "摸摸头"},
+      "body": "投喂冻干",
     },
     {
       "label": "猫条",
       "url": "6",
       "image": "assets/猫条.png",
       "sendUrl": "http://image1.juramaia.com/Fj0Bh6cPI0auRjeJbc63jpxFOxqy",
-      "body": {"message": "投喂小鱼干"},
+      "body": "投喂猫条",
     },
     {
       "label": "鱼干",
       "url": "6",
       "image": "assets/鱼干.png",
       "sendUrl": "http://image1.juramaia.com/Fj0Bh6cPI0auRjeJbc63jpxFOxqy",
-      "body": {"message": "投喂小鱼干"},
-    },
-    {
-      "label": "幼猫",
-      "url": "6",
-      "image": "assets/幼猫.png",
-      "sendUrl": "http://image1.juramaia.com/Fj0Bh6cPI0auRjeJbc63jpxFOxqy",
-      "body": {"message": "投喂小鱼干"},
+      "body": "投喂鱼干",
     },
     {
       "label": "鱼油",
       "url": "6",
       "image": "assets/鱼油.png",
       "sendUrl": "http://image1.juramaia.com/Fj0Bh6cPI0auRjeJbc63jpxFOxqy",
-      "body": {"message": "投喂小鱼干"},
+      "body": "投喂鱼油",
     },
     {
       "label": "鸡胸肉",
       "url": "6",
       "image": "assets/鸡胸肉.png",
       "sendUrl": "http://image1.juramaia.com/Fj0Bh6cPI0auRjeJbc63jpxFOxqy",
-      "body": {"message": "投喂小鱼干"},
+      "body": "投喂鸡胸肉",
     },
 
     // Add more options as needed
@@ -83,7 +76,7 @@ class _FeedOptionsListState extends State<FeedOptionsList> {
 
   void onHandClick() {
     if (selectedOption >= 0 && selectedOption < options.length) {
-      widget.showImages(context, options[selectedOption]["sendUrl"]);
+      widget.showImages(context, options[selectedOption]["sendUrl"],options[selectedOption]["body"]);
       Navigator.pop(context);
     }
   }

@@ -43,6 +43,7 @@ dependencies:
   image_picker: ^1.0.4
   font_awesome_flutter: ^10.5.0
   firebase_storage: ^11.2.6
+  url_launcher: ^6.1.14
 
 dev_dependencies:
   flutter_test:
@@ -77,6 +78,7 @@ flutter:
      - assets/幼猫.png
      - assets/鱼油.png
      - assets/鸡胸肉.png
+     - assets/Aggie.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

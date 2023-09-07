@@ -9,8 +9,7 @@ class UserProfileRow extends StatelessWidget {
         SizedBox(width: 20),
         CircleAvatar(
           radius: 30,
-          backgroundImage: CachedNetworkImageProvider(
-              "https://p.qqan.com/up/2020-10/16037671306141706.jpg"), // 替换成用户头像的URL
+          backgroundImage: AssetImage("assets/Aggie.jpg"), // 替换成用户头像的本地图像路径
         ),
         SizedBox(width: 10),
         Expanded(
@@ -18,7 +17,7 @@ class UserProfileRow extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "用户姓名",
+                "阿婕",
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
