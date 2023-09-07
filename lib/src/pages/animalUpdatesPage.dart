@@ -57,34 +57,51 @@ class _State extends State<AnimalUpdatesPage> {
         onRefresh: _onRefresh,
         onLoading: _onLoading,
         child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SearchComponent(),
-              Container(
-                padding: EdgeInsets.only(left: 20,right: 20),
-                child: AvatarList(
-                  avatars: [...articleList[0]["articleDetail"]["images"]],
+          child:Stack(children: [
+            Column(
+              children: [
+                SearchComponent(),
+                Container(
+                  padding: EdgeInsets.only(left: 20,right: 20),
+                  child: AvatarList(
+                    avatars: [...articleList[0]["articleDetail"]["images"]],
+                  ),
                 ),
-              ),
-              ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                itemCount: articleList.length,
-                itemBuilder: (context, index) {
-                  final item = articleList[index];
-                  return ItemCard(
-                    avatarPath: item['avatarPath'],
-                    avatarName: item['avatarName'],
-                    brief: item['brief'],
-                    imageUrl: item['imageUrl'],
-                    comments: item['comments'],
-                    likes: item['likes'],
-                  );
-                },
-              ),
-            ],
-          ),
+                ListView.builder(
+                  physics: NeverScrollableScrollPhysics(),
+                  shrinkWrap: true,
+                  itemCount: articleList.length,
+                  itemBuilder: (context, index) {
+                    final item = articleList[index];
+                    return ItemCard(
+                      avatarPath: item['avatarPath'],
+                      avatarName: item['avatarName'],
+                      brief: item['brief'],
+                      imageUrl: item['imageUrl'],
+                      comments: item['comments'],
+                      likes: item['likes'],
+                    );
+                  },
+                ),
+              ],
+            ),
+
+          ],)
+
         )
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // 处理悬浮按钮点击事件
+        },
+        child: Icon(
+          Icons.message,
+          color: Colors.white, // 设置图标颜色为白色
+        ),
+        backgroundColor: Color.fromRGBO(114, 79, 68, 1.0), // 设置背景颜色为 RGB(114, 79, 68)
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30), // 设置圆角半径为 20
+        ),
       ),
     );
   }
